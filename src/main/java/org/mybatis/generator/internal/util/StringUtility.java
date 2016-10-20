@@ -33,6 +33,44 @@ public class StringUtility {
     public static boolean stringHasValue(String s) {
         return s != null && s.length() > 0;
     }
+    
+    private static final String UNDERLINE = "_";
+    
+    /**
+     * 下划线型 转 驼峰型
+     * @author dzm
+     * @param param
+     * @return
+     */
+    public static String underlineToCame(String param){
+        String[] strs = param.split(UNDERLINE);
+        StringBuilder came = new StringBuilder();
+        if (strs!=null && strs.length>0){
+            for (int i=0; i<strs.length; i++){
+                if (i == 0){
+                    came.append(strs[i]);
+                } else{
+                    came.append(toUpperCaseFirstOne(strs[i]));
+                }
+            }
+        }
+        return came.toString();
+    }
+    
+    /**
+     * 首字母转大写
+     * @author dzm
+     * @param str 待处理的字符串
+     * @return 首字母大写的字符串
+     */
+    public static String toUpperCaseFirstOne(String str) {
+      if (Character.isUpperCase(str.charAt(0))) {
+        return str ;
+      } else {
+        return (new StringBuilder()).append(Character.toUpperCase(str.charAt(0)))
+            .append(str.substring(1)).toString() ;
+      }
+    }
 
     public static String composeFullyQualifiedTableName(String catalog,
             String schema, String tableName, char separator) {

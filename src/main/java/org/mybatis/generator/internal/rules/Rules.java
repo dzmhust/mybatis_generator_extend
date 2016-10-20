@@ -26,6 +26,30 @@ import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
  * @author Jeff Butler
  */
 public interface Rules {
+	
+	// add by dzm at 2016-10-19
+	/**
+	 * 产生自定义的BaseResultMap
+	 * @author dzm
+	 * @return
+	 */
+	boolean generateUdfBaseResultMap();
+	
+	/**
+	 * 产生自定义的BaseColumnList
+	 * @author dzm
+	 * @return
+	 */
+	boolean generateUdfBaseColumnList();
+	
+	/**
+	 * 产生自定义的Example
+	 * @author dzm
+	 * @return
+	 */
+	boolean generateUdfExample();
+	
+	// end add
 
     /**
      * Implements the rule for generating the insert SQL Map element and DAO

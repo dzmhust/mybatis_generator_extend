@@ -330,4 +330,29 @@ public abstract class BaseRules implements Rules {
                 && (tableConfiguration.isSelectByExampleStatementEnabled() || tableConfiguration
                         .isSelectByPrimaryKeyStatementEnabled());
     }
+    
+    
+    /**
+     * @author dzm
+     */
+    @Override
+    public boolean generateUdfBaseResultMap() {
+    	return true;
+    }
+    
+    /**
+     * @author dzm
+     */
+    @Override
+    public boolean generateUdfBaseColumnList() {
+    	return true;
+    }
+    
+    /**
+     * @author dzm
+     */
+    @Override
+    public boolean generateUdfExample() {
+    	return true;
+    }
 }

@@ -168,4 +168,28 @@ public class RulesDelegate implements Rules {
     public boolean generateBlobColumnList() {
         return rules.generateBlobColumnList();
     }
+
+    /**
+     * @author dzm
+     */
+	@Override
+	public boolean generateUdfBaseResultMap() {
+		return rules.generateUdfBaseResultMap();
+	}
+
+	/**
+     * @author dzm
+     */
+	@Override
+	public boolean generateUdfBaseColumnList() {
+		return rules.generateUdfBaseColumnList();
+	}
+
+	/**
+     * @author dzm
+     */
+	@Override
+	public boolean generateUdfExample() {
+		return rules.generateUdfExample();
+	}
 }

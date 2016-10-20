@@ -88,7 +88,10 @@ public abstract class IntrospectedTable {
         ATTR_BASE_COLUMN_LIST_ID,
         ATTR_BLOB_COLUMN_LIST_ID,
         ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID,
-        ATTR_MYBATIS3_SQL_PROVIDER_TYPE
+        ATTR_MYBATIS3_SQL_PROVIDER_TYPE,
+        ATTR_EXAMPLE_WHERE_CLAUSE_ID_UDF,
+        ATTR_BASE_COLUMN_LIST_ID_UDF,
+        ATTR_RESULT_MAP_WITH_BLOBS_ID_UDF
     }
 
     protected TableConfiguration tableConfiguration;
@@ -516,6 +519,11 @@ public abstract class IntrospectedTable {
         setBaseColumnListId("Base_Column_List"); //$NON-NLS-1$
         setBlobColumnListId("Blob_Column_List"); //$NON-NLS-1$
         setMyBatis3UpdateByExampleWhereClauseId("Update_By_Example_Where_Clause"); //$NON-NLS-1$
+        // add by dzm at 2016-10-19
+        setExampleWhereClauseIdUdf("Example_Where_Clause_Udf");
+        setBaseColumnListIdUdf("Base_Column_List_Udf");
+        setResultMapWithBLOBsIdUdf("BaseResultMapUdf");
+        // end add
     }
 
     public void setBlobColumnListId(String s) {
@@ -525,10 +533,35 @@ public abstract class IntrospectedTable {
     public void setBaseColumnListId(String s) {
         internalAttributes.put(InternalAttribute.ATTR_BASE_COLUMN_LIST_ID, s);
     }
+    
+    /**
+     * @author dzm
+     * @param s
+     */
+    private void setResultMapWithBLOBsIdUdf(String s) {
+    	internalAttributes.put(InternalAttribute.ATTR_RESULT_MAP_WITH_BLOBS_ID_UDF, s);
+	}
+    
+    /**
+     * @author dzm
+     * @param s
+     */
+    public void setBaseColumnListIdUdf(String s) {
+        internalAttributes.put(InternalAttribute.ATTR_BASE_COLUMN_LIST_ID_UDF, s);
+    }
+    
 
     public void setExampleWhereClauseId(String s) {
         internalAttributes.put(InternalAttribute.ATTR_EXAMPLE_WHERE_CLAUSE_ID,
                 s);
+    }
+    
+    /**
+     * add by dzm at 2016-10-19
+     * @param s
+     */
+    public void setExampleWhereClauseIdUdf(String s){
+    	internalAttributes.put(InternalAttribute.ATTR_EXAMPLE_WHERE_CLAUSE_ID_UDF, s);
     }
 
     public void setMyBatis3UpdateByExampleWhereClauseId(String s) {
@@ -635,6 +668,32 @@ public abstract class IntrospectedTable {
         return internalAttributes
                 .get(InternalAttribute.ATTR_BASE_COLUMN_LIST_ID);
     }
+    
+    // ---------------------------add by dzm at 2016-10-19---------------------------
+    /**
+     * @author dzm
+     * @return
+     */
+    public String getUdfExampleWhereClauseId(){
+    	return internalAttributes.get(InternalAttribute.ATTR_EXAMPLE_WHERE_CLAUSE_ID_UDF);
+    }
+    
+    /**
+     * @author dzm
+     * @return
+     */
+    public String getUdfBaseColumnListId(){
+    	return internalAttributes.get(InternalAttribute.ATTR_BASE_COLUMN_LIST_ID_UDF);
+    }
+    
+    /**
+     * @author dzm
+     * @return
+     */
+    public String getUdfResultMapWithBLOBsId(){
+    	return internalAttributes.get(InternalAttribute.ATTR_RESULT_MAP_WITH_BLOBS_ID_UDF);
+    }
+    // ---------------------------end by dzm at 2016-10-19---------------------------
 
     public String getExampleWhereClauseId() {
         return internalAttributes

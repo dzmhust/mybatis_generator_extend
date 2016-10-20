@@ -37,6 +37,9 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithou
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByExampleWithBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByExampleWithoutBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByPrimaryKeyElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UdfBaseColumnListElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UdfExampleWhereClauseElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UdfResultMapWithoutBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByExampleSelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByExampleWithBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByExampleWithoutBLOBsElementGenerator;
@@ -90,9 +93,51 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addUpdateByPrimaryKeySelectiveElement(answer);
         addUpdateByPrimaryKeyWithBLOBsElement(answer);
         addUpdateByPrimaryKeyWithoutBLOBsElement(answer);
+        // add by dzm at 2016-10-19
+        addUdfResultMapWithoutBLOBsElement(answer);
+        addUdfExampleWhereClauseElement(answer);
+        addUdfBaseColumnListElement(answer);
+        
+        // end add
 
         return answer;
     }
+    
+    // -------------------------add by dzm at 2016-10-19-------------------------
+    /**
+     * 增加自定义的查询条件
+     * @param parentElement
+     */
+    protected void addUdfExampleWhereClauseElement(XmlElement parentElement){
+    	if (introspectedTable.getRules().generateUdfExample()){
+    		AbstractXmlElementGenerator elementGenerator = new UdfExampleWhereClauseElementGenerator();
+    		initializeAndExecuteGenerator(elementGenerator, parentElement);
+    	}
+    }
+    
+    /**
+     * 增加自定义的BaseColumnList
+     * @param parentElement
+     */
+    protected void addUdfBaseColumnListElement(XmlElement parentElement){
+    	if (introspectedTable.getRules().generateUdfBaseColumnList()){
+    		AbstractXmlElementGenerator elementGenerator = new UdfBaseColumnListElementGenerator();
+    		initializeAndExecuteGenerator(elementGenerator, parentElement);
+    	}
+    }
+    /**
+     * 增加自定义的ResultMap
+     * @param parentElement
+     */
+    protected void addUdfResultMapWithoutBLOBsElement(XmlElement parentElement){
+    	if (introspectedTable.getRules().generateUdfBaseResultMap()){
+    		AbstractXmlElementGenerator elementGenerator = new UdfResultMapWithoutBLOBsElementGenerator();
+    		initializeAndExecuteGenerator(elementGenerator, parentElement);
+    	}
+    }
+    
+    
+    // -------------------------end by dzm -------------------------
 
     protected void addResultMapWithoutBLOBsElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateBaseResultMap()) {

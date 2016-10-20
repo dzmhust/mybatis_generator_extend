@@ -18,7 +18,7 @@ package org.mybatis.generator.internal.util;
 import java.util.StringTokenizer;
 
 /**
- * 
+ * 1.增加将下划线型 转 驼峰型
  * @author Jeff Butler
  */
 public class StringUtility {

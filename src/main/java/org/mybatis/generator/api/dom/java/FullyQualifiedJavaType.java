@@ -112,7 +112,6 @@ public class FullyQualifiedJavaType implements
             }
             sb.append('>');
         }
-
         return sb.toString();
     }
 
@@ -260,6 +259,15 @@ public class FullyQualifiedJavaType implements
         // always return a new instance because the type may be parameterized
         return new FullyQualifiedJavaType("java.util.List"); //$NON-NLS-1$
     }
+    
+    /**
+     * 增加分页的list
+     * @author dzm at 2016-10-20
+     * @return
+     */
+    public static final FullyQualifiedJavaType getNewPageListInstance(){
+    	return new FullyQualifiedJavaType("com.github.miemiedev.mybatis.paginator.domain.PageList");
+    }
 
     public static final FullyQualifiedJavaType getNewHashMapInstance() {
         // always return a new instance because the type may be parameterized
@@ -337,6 +345,7 @@ public class FullyQualifiedJavaType implements
     public void addTypeArgument(FullyQualifiedJavaType type) {
         typeArguments.add(type);
     }
+    
 
     private void parse(String fullTypeSpecification) {
         String spec = fullTypeSpecification.trim();

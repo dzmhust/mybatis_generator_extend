@@ -86,6 +86,14 @@ public interface DAOMethodNameCalculator {
      */
     String getSelectByExampleWithoutBLOBsMethodName(
             IntrospectedTable introspectedTable);
+    
+    /**
+     * 分页的查询
+     * @author dzm
+     * @param introspectedTable
+     * @return
+     */
+    String getSelectByExampleWithoutBLOBsPagingMethodName(IntrospectedTable introspectedTable);
 
     /**
      * Calculates and returns a name for the select by example with BLOBs

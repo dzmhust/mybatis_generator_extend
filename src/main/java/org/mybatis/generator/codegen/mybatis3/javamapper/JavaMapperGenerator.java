@@ -37,6 +37,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertMethodGe
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithoutBLOBsMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithoutBLOBsMethodPagingGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimaryKeyMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleWithBLOBsMethodGenerator;
@@ -104,6 +105,10 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addUpdateByPrimaryKeySelectiveMethod(interfaze);
         addUpdateByPrimaryKeyWithBLOBsMethod(interfaze);
         addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
+        
+        // add by dzm at 2016-10-20
+        addSelectByExampleWithoutBLOBsPagingMethod(interfaze);
+        // end add
 
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
         if (context.getPlugins().clientGenerated(interfaze, null,
@@ -166,6 +171,18 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
             AbstractJavaMapperMethodGenerator methodGenerator = new SelectByExampleWithoutBLOBsMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
+    }
+    
+    /**
+     * 添加带分页的selectByExample
+     * @author dzm
+     * @param interfaze
+     */
+    protected void addSelectByExampleWithoutBLOBsPagingMethod(Interface interfaze){
+    	if (introspectedTable.getRules().generateSelectByExampleWithoutBLOBsPaging()){
+    		AbstractJavaMapperMethodGenerator methodGenerator = new SelectByExampleWithoutBLOBsMethodPagingGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+    	}
     }
 
     protected void addSelectByPrimaryKeyMethod(Interface interfaze) {

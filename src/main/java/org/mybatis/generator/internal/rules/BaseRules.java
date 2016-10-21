@@ -355,4 +355,12 @@ public abstract class BaseRules implements Rules {
     public boolean generateUdfExample() {
     	return true;
     }
+    
+    /**
+     * @author dzm
+     */
+    @Override
+    public boolean generateSelectByExampleWithoutBLOBsPaging() {
+    	return true;
+    }
 }

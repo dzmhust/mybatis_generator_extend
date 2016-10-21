@@ -192,4 +192,12 @@ public class RulesDelegate implements Rules {
 	public boolean generateUdfExample() {
 		return rules.generateUdfExample();
 	}
+
+	/**
+	 * @author dzm
+	 */
+	@Override
+	public boolean generateSelectByExampleWithoutBLOBsPaging() {
+		return rules.generateSelectByExampleWithoutBLOBsPaging();
+	}
 }

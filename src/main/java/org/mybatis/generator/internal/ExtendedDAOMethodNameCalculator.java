@@ -140,6 +140,15 @@ public class ExtendedDAOMethodNameCalculator implements DAOMethodNameCalculator 
 
         return sb.toString();
     }
+    
+    /**
+     * @author dzm
+     */
+    @Override
+    public String getSelectByExampleWithoutBLOBsPagingMethodName(
+    		IntrospectedTable introspectedTable) {
+    	return getSelectByExampleWithoutBLOBsMethodName(introspectedTable);
+    }
 
     /**
      * 1. if this will be the only selectByExample, then the result should be

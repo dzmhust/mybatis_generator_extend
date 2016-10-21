@@ -49,6 +49,13 @@ public interface Rules {
 	 */
 	boolean generateUdfExample();
 	
+	
+	/**
+	 * 产生带分页的selectByExample
+	 * @return
+	 */
+	boolean generateSelectByExampleWithoutBLOBsPaging();
+	
 	// end add
 
     /**

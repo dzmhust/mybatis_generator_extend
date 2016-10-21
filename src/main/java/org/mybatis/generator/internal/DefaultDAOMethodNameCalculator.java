@@ -102,6 +102,17 @@ public class DefaultDAOMethodNameCalculator implements DAOMethodNameCalculator {
             return "selectByExampleWithoutBLOBs"; //$NON-NLS-1$
         }
     }
+    
+    
+    /**
+     * 分页查询
+     * @author dzm
+     */
+    @Override
+    public String getSelectByExampleWithoutBLOBsPagingMethodName(
+    		IntrospectedTable introspectedTable) {
+    	return "selectByExample";
+    }
 
     /**
      * 1. if this will be the only selectByExample, then the result should be
